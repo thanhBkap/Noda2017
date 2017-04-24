@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "60703439268",
+    "firebase_url": "https://noda-85d51.firebaseio.com",
+    "project_id": "noda-85d51",
+    "storage_bucket": "noda-85d51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60703439268:android:92ff1a21cc0a20d2",
+        "android_client_info": {
+          "package_name": "com.wimex.mbns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60703439268-48okgqf5l781p0nl95p3f84ngbjhss3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRxw6Yc79y6lVCzo-W3s5v4xh4LnJ1Lpc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

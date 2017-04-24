@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/user_acc"
+        android:id="@+id/thongtintaikhoan"
+        android:title="Thông tin tài khoản" />
+    <item
+        android:icon="@drawable/list_green"
+        android:id="@+id/listnsx"
+        android:title="Danh sách nhà sản xuất" />
+
+    <item
+        android:icon="@drawable/rate"
+        android:id="@+id/mnudanhgia"
+        android:title="Đánh giá" />
+    <item
+        android:icon="@drawable/user_book_green"
+        android:id="@+id/lichsu"
+        android:title="Lịch sử" />
+
+    <item android:id="@+id/trogiup"
+        android:title="Trợ giúp"
+        android:icon="@drawable/help"/>
+
+    <item
+        android:icon="@drawable/logout"
+        android:id="@+id/logout"
+        android:title="Đăng xuất" />
+
+</menu>

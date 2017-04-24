@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_dat_hang"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wimex.mbns.NguoiMua.DatHangActivity"
+    android:background="#fff">
+    <include
+        layout="@layout/toolbar"/>
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/toolbar"
+        android:textColor="#000"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txtDatHangSoSanPham"
+        android:text="SẢN PHẨM (3)" />
+
+    <ListView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_above="@+id/Scr"
+        android:layout_below="@+id/txtDatHangSoSanPham"
+        android:layout_marginTop="10dp"
+        android:id="@+id/lvDatHang"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <ScrollView
+        android:layout_above="@+id/btnDatHang"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/Scr"
+        android:layout_width="match_parent"
+        android:layout_height="210dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textSize="20dp"
+                        android:textColor="#000"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:text="Địa chỉ nhận hàng" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:background="@drawable/pen_green"
+                        android:textColor="#000"
+                        android:id="@+id/btnChinhSuaDiaChiDatHang"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:textSize="10dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#03c854"
+                android:layout_marginBottom="2dp"/>
+
+            <TextView
+                android:textColor="#000"
+                android:id="@+id/txtDiaChiDatHang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phí vận chuyển:" />
+
+                <TextView
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:id="@+id/txtPhiVanChuyenDatHang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text="0 đ" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng tiền : "/>
+                <TextView
+                    android:textSize="20dp"
+                    android:textColor="#000"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 đ"
+                    android:gravity="right"
+                    android:id="@+id/txtTongTienDatHang"/>
+            </LinearLayout>
+
+            <TextView
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thông tin tài khoản" />
+
+            <TextView
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:id="@+id/txtTenDatHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tên : Nguyễn Bá Đạo" />
+
+            <TextView
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:id="@+id/txtSoDienThoaiDatHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số điện thoại : 09899998888" />
+
+            <TextView
+                android:textSize="20dp"
+                android:textColor="#000"
+                android:id="@+id/txtEmailDatHang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: thichmomong@gmail.com" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
+        android:textSize="12dp"
+        android:id="@+id/btnDatHang"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/oval_dangnhap"
+        android:text="Đặt hàng"
+        android:layout_marginBottom="5dp"/>
+
+
+</RelativeLayout>

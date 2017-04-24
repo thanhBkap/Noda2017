@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/khung"
+    android:padding="10dp"
+    android:orientation="horizontal">
+    <RelativeLayout
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:background="@drawable/khung_trong"
+        android:padding="10dp"
+        android:id="@+id/relativeLayout">
+        <ImageView
+            android:id="@+id/imgAvatarNSX"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@mipmap/ic_launcher" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="NHÀ SẢN XUẤT A"
+            android:textSize="18dp"
+            android:textColor="#000"
+            android:id="@+id/txtSapXepNSXTen"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_below="@+id/txtSapXepNSXTen"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Rai xanh, củ quả, gia vị,..."
+            android:textColor="#000"
+            android:layout_below="@+id/txtSapXepNSXTen"
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtSapXepNSXDanhMuc"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true">
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:background="#000"
+                android:id="@+id/viewgiua"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@+id/viewgiua">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Sản phẩm"
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="99"
+                    android:id="@+id/txtSapXepNSXSoSanPham"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="25dp"
+                    android:textColor="#35af56"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/viewgiua">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Điểm số"
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:text="99"
+                    android:id="@+id/txtSapXepNSXDiemSo"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="25dp"
+                    android:textColor="#35af56"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

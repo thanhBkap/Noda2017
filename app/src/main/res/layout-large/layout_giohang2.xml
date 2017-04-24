@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <TextView
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:id="@+id/txtGioHangThongBao"
+        android:textColor="#000"
+        android:text="Bạn không có món hàng nào"/>
+    <ListView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/chonmua_mua"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/listGioHang">
+    </ListView>
+    <RelativeLayout
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/chonmua_mua"
+        android:background="#4caf50">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/btMua_GioHang">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng: "
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="#000"
+                    android:id="@+id/item_TongTien"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" đ"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+        <Button
+            android:layout_width="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent"
+            android:background="#D84315"
+            android:text="Mua"
+            android:textColor="#fff"
+            android:id="@+id/btMua_GioHang"/>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

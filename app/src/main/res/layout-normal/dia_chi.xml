@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4CAF50"
+        android:elevation="4dp"
+        android:popupTheme="@style/AppTheme"
+        android:id="@+id/toolbar_diachimoi"/>
+    <TextView
+        android:id="@+id/textview1"
+        android:layout_below="@+id/toolbar_diachimoi"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nhập địa chỉ nhận hàng"
+        android:textSize="25dp" />
+
+    <AutoCompleteTextView
+        android:layout_below="@+id/textview1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:hint="Tỉnh, Thành phố"
+        android:id="@+id/actvTinh"
+        android:textColorHint="#4b4040"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/btn_dropdown" />
+    <AutoCompleteTextView
+        android:layout_below="@+id/actvTinh"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/actvQuanHuyen"
+        android:hint="Quận, Huyện"
+        android:textColorHint="#4b4040"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/btn_dropdown" />
+    <AutoCompleteTextView
+        android:layout_below="@+id/actvQuanHuyen"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/actvXaPhuong"
+        android:hint="Xã, Phường"
+        android:textColorHint="#4b4040"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:drawable/btn_dropdown" />
+
+    <EditText
+        android:layout_width="250dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_height="40dp"
+        android:id="@+id/edDiaChiCuThe"
+        android:hint="Địa chỉ cụ thể"
+        android:textColorHint="#4b4040"
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_below="@+id/actvXaPhuong"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tiếp tục"
+        android:layout_below="@+id/edDiaChiCuThe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:id="@+id/btTiepTucDiaChi"/>
+
+</RelativeLayout>

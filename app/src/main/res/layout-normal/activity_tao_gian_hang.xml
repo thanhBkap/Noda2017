@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.wimex.mbns.NhaSanXuat.TaoGianHangActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Danh mục"
+                    android:textColor="#000" />
+
+                <Spinner
+                    android:id="@+id/spinnerTaoGianHangDanhMuc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#c6c6c6">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sản phẩm"
+                    android:textColor="#000" />
+
+                <Spinner
+                    android:id="@+id/spinnerTaoGianHangSanPham"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#c6c6c6"></Spinner>
+            </LinearLayout>
+
+            <!--<EditText
+                android:id="@+id/txtTaoGianHangTenSanPham"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:hint="Tên sản phẩm"
+                android:textColor="#000"
+                android:textColorHint="#898989">
+
+            </EditText>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Ảnh sản phẩm"
+                android:textColor="#000"
+                android:textSize="18dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="1dp"
+                android:background="#000" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:text="Yêu cầu ít nhất 5 ảnh với các góc độ khác nhau"
+                android:textColor="#000"
+                android:textSize="15dp" />
+
+
+            <GridView
+                android:id="@+id/gridViewTaoGianHang"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:numColumns="3"></GridView>
+
+
+            <EditText
+                android:id="@+id/txtTaoGianHangDonGia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="5dp"
+                android:hint="Đơn giá sản phẩm"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textColorHint="#8e8e8e"
+                android:textSize="15dp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutTaoGianHangNgayThuHoach"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:id="@+id/txtTaoGianHangNgayThuHoach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Ngày thu hoạch"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="#03c854"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/calendar" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <EditText
+                android:id="@+id/txtTaoGianHangSoLuongBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:hint="Số lượng bán"
+                android:inputType="number"
+                android:textColor="#000"
+                android:textColorHint="#949494"
+                android:textSize="15dp" />
+
+            <Button
+                android:id="@+id/btnTaoGianHangDangBan"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/oval_dangnhap"
+                android:text="Đăng bán"
+                android:textColor="#fff" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

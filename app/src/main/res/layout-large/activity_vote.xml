@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wimex.mbns.NguoiMua.VoteActivity"
+    android:background="#fff">
+
+    <include layout="@layout/toolbar" />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textColor="#000"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/txtVoteNotice"
+        android:text="Bạn chưa có đơn hàng nào!!! Hãy mua hàng và đánh giá các sản phẩm nông sản chất lượng ..."/>
+
+    <ListView
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="5dp"
+        android:id="@+id/lvVote"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnVote"
+        android:layout_marginBottom="10dp">
+
+    </ListView>
+
+    <Button
+        android:textSize="18dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/oval_dangnhap"
+        android:textColor="#fff"
+        android:id="@+id/btnVote"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Xác nhận" />
+
+</RelativeLayout>

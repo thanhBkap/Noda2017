@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_tao_gian_hang"
+        android:orderInCategory="100"
+        android:title="tạo gian hàng"
+        android:icon="@drawable/cong"
+        app:showAsAction="always" />
+</menu>

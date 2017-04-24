@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#4CAF50"
+        android:elevation="4dp"
+        android:popupTheme="@style/AppTheme"
+        android:id="@+id/toolbar_giohang"/>-->
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+<TextView
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+    android:layout_centerInParent="true"
+    android:id="@+id/txtGioHangThongBao"
+    android:text="Bạn chưa chọn món hàng nào....\n Hãy quay lại mua sắm nào"/>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/chonmua_mua"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/listGioHang">
+    </ListView>
+    <RelativeLayout
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/chonmua_mua"
+        android:background="#2196F3">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/btMua_GioHang">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="Chọn tất cả"
+                android:textColor="#000"
+                android:id="@+id/cbChonTatCa"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/cbChonTatCa"
+                android:gravity="center"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tổng: "
+                    android:textColor="#000"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10000000"
+                    android:textColor="#000"
+                    android:id="@+id/item_TongTien"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="VND"
+                    android:textColor="#000"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_height="match_parent"
+            android:background="#C62828"
+            android:text="Mua"
+            android:id="@+id/btMua_GioHang"/>
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

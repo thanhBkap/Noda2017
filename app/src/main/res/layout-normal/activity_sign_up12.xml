@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+    <include layout="@layout/toolbar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BẠN VUI LÒNG NHẬP SỐ ĐIỆN THOẠI"
+        android:layout_below="@+id/toolbar"
+        android:textSize="14dp"
+        android:textColor="#01c853"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <!--
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đối tượng"
+            android:layout_below="@+id/edSignUpSoDienThoai"
+            android:textColor="#01c853"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/textViewDT" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/textViewDT"
+            android:background="#01c853"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"/>
+
+        <RadioGroup
+            android:layout_below="@id/textViewDT"
+            android:layout_marginTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioButton
+                    android:text="Người mua hàng"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:button="@android:drawable/btn_radio"
+                    android:id="@+id/rbNguoiMuaHang" />
+
+                <RadioButton
+                    android:text="Nười sản xuất"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:textSize="14dp"
+                    android:id="@+id/rbNguoiSanXuat"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:button="@android:drawable/btn_radio" />
+            </RelativeLayout>
+        </RadioGroup>-->
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/edSignUpSoDienThoai"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_dangnhap"
+        android:text="Đăng Ký"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/btXacNhanSoDienThoai"/>
+
+    <EditText
+        android:textCursorDrawable="@drawable/edittext_cursor"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Số điện thoại"
+        android:textColorHint="#919191"
+        android:textColor="#000"
+        android:id="@+id/edSignUpSoDienThoai"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
+
+
+</RelativeLayout>
