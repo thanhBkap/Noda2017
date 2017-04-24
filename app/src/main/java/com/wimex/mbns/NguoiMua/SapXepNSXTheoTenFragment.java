@@ -132,40 +132,13 @@ public class SapXepNSXTheoTenFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sap_xep_nha_san_xuat_theo_ten, container, false);
         lvSapXepTheoTenNSX = (ListView) view.findViewById(R.id.lvSapXepTheoTenNSX);
         listNSX = new ArrayList<>();
+        sapXepNSXAdapter = new SapXepNSXAdapter(getContext(), R.layout.list_item_sap_xep_nha_san_xuat2, listNSX);
+        lvSapXepTheoTenNSX.setAdapter(sapXepNSXAdapter);
         if (Auth.checked.equals("1")) {
             listNSX = Auth.sapXepNSXTheoTenList;
             SapXepNSX.sosanh(listNSX, 1);
-        }
-        sapXepNSXAdapter = new SapXepNSXAdapter(getContext(), R.layout.list_item_sap_xep_nha_san_xuat2, listNSX);
-        lvSapXepTheoTenNSX.setAdapter(sapXepNSXAdapter);
-        lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                xuLyClickNSX(position);
-            }
-        });
-        return view;
-    }
-
-    private void xuLyClickNSX(int pos) {
-        Intent mMoveToNSX = new Intent(getActivity(), NhaSanXuatActivity.class);
-        NhaSanXuat nhaSanXuat = listNSX.get(pos);
-        mMoveToNSX.putExtra("NSXId", nhaSanXuat.getId());
-        startActivity(mMoveToNSX);
-        getActivity().finish();
-
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        /*Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-            }
-        });
-        thread.start();*/
-        if (Auth.checked.equals("0")) {
+            sapXepNSXAdapter.notifyDataSetChanged();
+        }else if (Auth.checked.equals("0")) {
             PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), true, new AsyncResponse() {
                 @Override
                 public void processFinish(String s) {
@@ -221,6 +194,82 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                 }
             });*/
         }
+
+        lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                xuLyClickNSX(position);
+            }
+        });
+        return view;
+    }
+
+    private void xuLyClickNSX(int pos) {
+        Intent mMoveToNSX = new Intent(getActivity(), NhaSanXuatActivity.class);
+        NhaSanXuat nhaSanXuat = listNSX.get(pos);
+        mMoveToNSX.putExtra("NSXId", nhaSanXuat.getId());
+        startActivity(mMoveToNSX);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+       /* if (Auth.checked.equals("0")) {
+            PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), true, new AsyncResponse() {
+                @Override
+                public void processFinish(String s) {
+                    JSONArray root = null;
+                    try {
+                        root = new JSONArray(s);
+                        for (int i = 0; i < root.length(); i++) {
+                            JSONObject nsx = root.getJSONObject(i);
+                            NhaSanXuat nhaSanXuat = new NhaSanXuat();
+                            nhaSanXuat.setAnh(Auth.domain + "/images/avarta/" + nsx.getString("image"));
+                            nhaSanXuat.setName(nsx.getString("name"));
+                            nhaSanXuat.setId(nsx.getString("id"));
+                            nhaSanXuat.setSoSanPham(nsx.getString("product_nums"));
+                            nhaSanXuat.setVote(nsx.getString("point"));
+                            listNSX.add(nhaSanXuat);
+                            SapXepNSX.sosanh(listNSX,1);
+                            sapXepNSXAdapter.notifyDataSetChanged();
+                        }
+                        Auth.sapXepNSXTheoTenList=listNSX;
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            postResponseAsyncTask.setLoadingMessage(getResources().getString(R.string.loading));
+            postResponseAsyncTask.setEachExceptionsHandler(new EachExceptionsHandler() {
+                @Override
+                public void handleIOException(IOException e) {
+
+                }
+
+                @Override
+                public void handleMalformedURLException(MalformedURLException e) {
+
+                }
+
+                @Override
+                public void handleProtocolException(ProtocolException e) {
+                    Toast.makeText(getContext(), getResources().getString(R.string.network_error), Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+
+                }
+            });
+            postResponseAsyncTask.execute(Auth.domain+"/danhsachnhasanxuatjson.php");
+           *//* getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    listTask.add(new Task().execute(Auth.domain+"/sapxepnsxjson1.php"));
+                }
+            });*//*
+        }*/
 
     }
 

@@ -1,6 +1,5 @@
 package com.wimex.mbns.NguoiMua;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.squareup.picasso.Picasso;
 import com.wimex.mbns.Model.Auth;
 import com.wimex.mbns.R;
-import com.wimex.mbns.XuLyData.JsonToString;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,20 +34,21 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class GioiThieuNhaSanXuatFragment extends Fragment {
     CircleImageView imgGioiThieuNSX;
     TextView txtGioiThieuNSXThongTin;
-    String nsxId="0";
+    String nsxId = "0";
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.gioi_thieu_nha_san_xuat_fragment, container, false);
-        nsxId=getArguments().getString("nsxId");
-        imgGioiThieuNSX= (CircleImageView) rootView.findViewById(R.id.imgGioiThieuNSX);
-        txtGioiThieuNSXThongTin= (TextView) rootView.findViewById(R.id.txtGioiThieuNSXThongTin);
-        Thread thread = new Thread(new Runnable() {
+        nsxId = getArguments().getString("nsxId");
+        imgGioiThieuNSX = (CircleImageView) rootView.findViewById(R.id.imgGioiThieuNSX);
+        txtGioiThieuNSXThongTin = (TextView) rootView.findViewById(R.id.txtGioiThieuNSXThongTin);
+        /*Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-             //   new Task().execute("http://mbns.esy.es/thongtinmotajson.php");
+                   new Task().execute("http://mbns.esy.es/thongtinmotajson.php");
             }
         });
-        thread.start();
+        thread.start();*/
         HashMap<String, String> postData = new HashMap<>();
         postData.put("id", nsxId);
         PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), postData, new AsyncResponse() {
@@ -59,10 +58,10 @@ public class GioiThieuNhaSanXuatFragment extends Fragment {
                 //txtTaoGianHangDonGia.setText(s);
                 try {
                     JSONArray root = new JSONArray(s);
-                    for (int i=0;i<root.length();i++){
+                    for (int i = 0; i < root.length(); i++) {
                         JSONObject taiKhoan = root.getJSONObject(i);
                         Picasso.with(getActivity()).
-                                load(Auth.domain+"/images/avarta/"+taiKhoan.getString("AvartaId")).
+                                load(Auth.domain + "/images/avarta/" + taiKhoan.getString("AvartaId")).
                                 into(imgGioiThieuNSX);
                         txtGioiThieuNSXThongTin.setText(taiKhoan.getString("thongTinMoTa"));
                         break;
@@ -94,11 +93,11 @@ public class GioiThieuNhaSanXuatFragment extends Fragment {
 
             }
         });
-        postResponseAsyncTask.execute(Auth.domain+"/thongtinmotajson.php");
+        postResponseAsyncTask.execute(Auth.domain + "/thongtinmotajson.php");
         return rootView;
     }
-
-    class Task extends AsyncTask<String, Void, String>{
+/*
+    class Task extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -109,11 +108,11 @@ public class GioiThieuNhaSanXuatFragment extends Fragment {
         protected void onPostExecute(String s) {
             try {
                 JSONArray root = new JSONArray(s);
-                for (int i=0;i<root.length();i++){
+                for (int i = 0; i < root.length(); i++) {
                     JSONObject taiKhoan = root.getJSONObject(i);
-                    if (taiKhoan.getString("khachHangId").equals(nsxId)){
+                    if (taiKhoan.getString("khachHangId").equals(nsxId)) {
                         Picasso.with(getContext()).
-                                load(Auth.domain+"/images/avarta/"+taiKhoan.getString("AvartaId")).
+                                load(Auth.domain + "/images/avarta/" + taiKhoan.getString("AvartaId")).
                                 into(imgGioiThieuNSX);
                         txtGioiThieuNSXThongTin.setText(taiKhoan.getString("thongTinMoTa"));
                         break;
@@ -124,6 +123,6 @@ public class GioiThieuNhaSanXuatFragment extends Fragment {
             }
 
         }
-    }
+    }*/
 
 }

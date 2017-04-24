@@ -1,6 +1,5 @@
 package com.wimex.mbns.NguoiMua;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,19 +7,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.kosalgeek.genasync12.AsyncResponse;
+import com.kosalgeek.genasync12.EachExceptionsHandler;
+import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.wimex.mbns.Adapter.GianHangNSXAdapter;
-import com.wimex.mbns.Adapter.GianHangNSXAdapterError;
 import com.wimex.mbns.Model.Auth;
 import com.wimex.mbns.Model.SanPham;
 import com.wimex.mbns.R;
-import com.wimex.mbns.XuLyData.JsonToString;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by admin on 3/13/2017.
@@ -28,7 +34,7 @@ import java.util.ArrayList;
 
 public class GianHangNhaSanXuatFragment extends Fragment {
     ListView lvGianHangNhaSanXuat;
-    GianHangNSXAdapterError gianHangNSXAdapter;
+ //   GianHangNSXAdapterError gianHangNSXAdapter;
     GianHangNSXAdapter ha;
     ArrayList<SanPham> listSanPham;
     private Handler timerHandler = new Handler();
@@ -74,11 +80,11 @@ public class GianHangNhaSanXuatFragment extends Fragment {
     };*/
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.gian_hang_nha_san_xuat_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.gian_hang_nha_san_xuat_fragment, container, false);
         nsxId = getArguments().getString("nsxId");
         lvGianHangNhaSanXuat = (ListView) rootView.findViewById(R.id.lvGianHangNhaSanXuat);
         listSanPham = new ArrayList<>();
-        gianHangNSXAdapter = new GianHangNSXAdapterError(getContext(), R.layout.list_item_gian_hang_nha_san_xuat, listSanPham);
+       // gianHangNSXAdapter = new GianHangNSXAdapterError(getContext(), R.layout.list_item_gian_hang_nha_san_xuat, listSanPham);
         ha = new GianHangNSXAdapter(getContext(), listSanPham);
         //lvGianHangNhaSanXuat.setAdapter(gianHangNSXAdapter);
         lvGianHangNhaSanXuat.setAdapter(ha);
@@ -134,17 +140,92 @@ public class GianHangNhaSanXuatFragment extends Fragment {
         /*Thread thread2= new Thread(timerRunnable);
         thread2.start();*/
 
-        Thread thread = new Thread(new Runnable() {
+       /* Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 new Task().execute(Auth.domain + "/sanphamjson.php");
             }
         });
-        thread.start();
+        thread.start();*/
+        HashMap<String, String> postData = new HashMap<>();
+        postData.put("id", nsxId);
+        PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), postData, true, new AsyncResponse() {
+            @Override
+            public void processFinish(String s) {
+                try {
+                    JSONArray root = new JSONArray(s);
+                    ArrayList<String> listSanPhamId = new ArrayList<>();
+                    for (int i = 0; i < root.length(); i++) {
+                        JSONObject mSanPham = root.getJSONObject(i);
+                            if (listSanPhamId.size() == 0) {
+                                SanPham sanPham = new SanPham();
+                                sanPham.setAnh(Auth.domain + "/images/" + mSanPham.getString("logoId"));
+                                sanPham.setPrice(Float.parseFloat(mSanPham.getString("giaSanPham")));
+                                sanPham.setTen(mSanPham.getString("tenSanPham"));
+                                sanPham.setId(mSanPham.getInt("sanPhamId"));
+                                sanPham.setDate(mSanPham.getString("date"));
+                                sanPham.setStatus(mSanPham.getInt("status"));
+                                sanPham.setSoLuongConLai(Float.parseFloat(mSanPham.getString("sanLuong")));
+                                sanPham.setDonViTieuChuan(mSanPham.getString("donViTieuChuan"));
+                                listSanPhamId.add(mSanPham.getString("sanPhamId"));
+                                listSanPham.add(sanPham);
+                                ha.notifyDataSetChanged();
+                            } else {
+                                int trung = 0;
+                                for (String sanPhamId : listSanPhamId) {
+                                    if (sanPhamId.equals(mSanPham.getString("sanPhamId"))) {
+                                        trung++;
+                                        break;
+                                    }
+                                }
+                                if (trung == 0) {
+                                    SanPham sanPham = new SanPham();
+                                    sanPham.setAnh(Auth.domain + "/images/" + mSanPham.getString("logoId"));
+                                    sanPham.setPrice(Float.parseFloat(mSanPham.getString("giaSanPham")));
+                                    sanPham.setTen(mSanPham.getString("tenSanPham"));
+                                    sanPham.setId(mSanPham.getInt("sanPhamId"));
+                                    sanPham.setDate(mSanPham.getString("date"));
+                                    sanPham.setStatus(mSanPham.getInt("status"));
+                                    sanPham.setSoLuongConLai(Float.parseFloat(mSanPham.getString("sanLuong")));
+                                    sanPham.setDonViTieuChuan(mSanPham.getString("donViTieuChuan"));
+                                    listSanPham.add(sanPham);
+                                    listSanPhamId.add(mSanPham.getString("sanPhamId"));
+                                    ha.notifyDataSetChanged();
+                                }
+                            }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        postResponseAsyncTask.setLoadingMessage(getResources().getString(R.string.loading));
+        postResponseAsyncTask.setEachExceptionsHandler(new EachExceptionsHandler() {
+            @Override
+            public void handleIOException(IOException e) {
+
+            }
+
+            @Override
+            public void handleMalformedURLException(MalformedURLException e) {
+
+            }
+
+            @Override
+            public void handleProtocolException(ProtocolException e) {
+                Toast.makeText(getContext(), getResources().getString(R.string.network_error), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
+
+            }
+        });
+        postResponseAsyncTask.execute(Auth.domain + "/gianhangnhasanxuatjson.php");
         return rootView;
     }
 
-    class Task extends AsyncTask<String, Void, String> {
+    /*class Task extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... params) {
@@ -200,7 +281,7 @@ public class GianHangNhaSanXuatFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-        }
-    }
+            */
 }
+
+

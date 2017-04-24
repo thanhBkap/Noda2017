@@ -20,7 +20,6 @@ public class DSNSXActivity extends Menu_CT {
     private UyTinNSXFragment m2Fragment;
     private SoLuongNSXFrament m3Fragment;
     public static ArrayList<NhaSanXuat> listNhaSanXuat;
-
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
