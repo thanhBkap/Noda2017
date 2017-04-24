@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff">
+
+    <include layout="@layout/toolbar"/>
+
+    <TextView
+        android:textSize="30dp"
+        android:id="@+id/txtDiaChiCuThongBao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bạn chưa có địa chỉ giao hàng. Hãy thêm mới !!!"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
+    <LinearLayout
+        android:layout_marginTop="1dp"
+        android:id="@+id/liDiaChi"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/button"
+        android:layout_marginBottom="10dp">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listDiachiCu"
+            android:choiceMode="singleChoice">
+        </ListView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:paddingRight="40dp"
+        android:paddingLeft="40dp">
+        <Button
+            android:textColor="#fff"
+            android:background="@drawable/oval_dangnhap"
+            android:textSize="18dp"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:id="@+id/btThemDiaChi"
+            android:text="Thêm mới"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:textColor="#fff"
+            android:background="@drawable/oval_dangnhap"
+            android:text="Tiếp tục"
+            android:textSize="18dp"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:id="@+id/btTiepTucDiaChi"
+            android:layout_alignBottom="@+id/btThemDiaChi"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:background="@drawable/oval_dangky"
+            android:textSize="18dp"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:textColor="#000"
+            android:text="Xóa"
+            android:id="@+id/btXoaDiaChi"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

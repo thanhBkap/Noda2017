@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Noda</string>
+    <string name="FCM_PREF">com.wimex.mbns.fcm_pref</string>
+    <string name="FCM_TOKEN">com.wimex.mbns.fcm_token</string>
+    <string name="title_activity_nha_san_xuat">NhaSanXuatActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_main3">Main3Activity</string>
+    <string name="title_activity_main4">Main4Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_dsnsx">Danh sách nhà sản xuất</string>
+    <string name="title_activity_trang_chu_nsx">TrangChuNSXActivity</string>
+    <string name="loading">Đang tải ...</string>
+    <string name="network_error">Gặp sự cố kết nối mạng</string>
+    <string name="login_request">Bạn chưa đăng nhập
+Hãy đăng nhập ngay</string>
+    <string name="add_cart_successfully">Thêm vào giỏ thành công</string>
+    <string name="sold_out">Rất tiếc, sản phẩm đã hết hàng, hãy quay lại mua sản phẩm khác</string>
+    <string name="duplicate_in_cart">Bạn đã đặt mua sản phẩm này !!!</string>
+    <string name="time_up">Sản phẩm đã hết thời gian đặt hàng, vui lòng quý khách chọn sản phẩm khác</string>
+</resources>

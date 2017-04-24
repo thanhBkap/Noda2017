@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_sign_up2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.wimex.mbns.SignInSignUp.SignUp2Activity"
+    android:background="#fff">
+
+    <include layout="@layout/toolbar"/>
+    <EditText
+        android:textCursorDrawable="@drawable/edittext_cursor"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/edXacNhanSoDienThoai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập mã xác nhận của bạn"
+        android:layout_marginTop="20dp"
+        android:textColor="#000"
+        android:textColorHint="#8b8b8b"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"/>
+    <Button
+        android:layout_below="@+id/edXacNhanSoDienThoai"
+        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/oval_dangnhap"
+        android:text="Xác nhận"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:id="@+id/btXacNhanMaDienThoai"/>
+</RelativeLayout>

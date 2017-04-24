@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <RelativeLayout
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="2dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/Viewcenter5"/>
+        <RelativeLayout
+            android:id="@+id/re11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/Viewcenter5">
+
+            <TextView
+                android:textSize="22dp"
+                android:id="@+id/txtLichSuBanHangTenSanPham"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@+id/viewgiua01230"
+                android:text="Cải bắp"
+                android:textColor="#000"
+                android:layout_marginRight="5dp"/>
+
+            <View
+                android:id="@+id/viewgiua01230"
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="#fff" />
+
+            <TextView
+                android:textSize="22dp"
+                android:id="@+id/txtLichSuBanHangNgayThuHoach"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/viewgiua01230"
+                android:text="23/9/1884"
+                android:textColor="#000" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_toRightOf="@+id/Viewcenter5"
+            android:id="@+id/re12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textSize="22dp"
+                android:id="@+id/txtLichSuBanHangDonGia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerHorizontal="true"
+                android:layout_toLeftOf="@+id/viewgiua01234"
+                android:text="4.999/kg"
+                android:textColor="#000" />
+
+            <View
+                android:id="@+id/viewgiua01234"
+                android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="#fff" />
+
+            <TextView
+                android:textSize="22dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/txtLichSuBanHangSoLuong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50kg"
+                android:textColor="#000" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/re1"
+        android:layout_marginTop="1dp"
+        android:background="#000" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/re1"
+        android:layout_marginTop="3dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="THÀNH TIỀN"
+            android:textColor="#000"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/txtLichSuBanHangTongTienMotSanPham"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="10.000 đ"
+            android:textColor="#000"
+            android:textSize="22dp" />
+    </RelativeLayout>
+
+</RelativeLayout>

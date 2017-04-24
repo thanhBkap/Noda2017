@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/toolbar" />
+
+        <ImageView
+            android:id="@+id/imgSanPhamChiTiet"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_centerHorizontal="true" />
+
+        <android.support.v7.widget.RecyclerView
+            android:paddingLeft="10dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:background="#e6e6e6"
+            android:id="@+id/recyclerViewAnh"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_below="@+id/imgSanPhamChiTiet"
+            android:layout_marginBottom="2dp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <ScrollView
+            android:id="@+id/thongtin_chitiet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:layout_below="@+id/recyclerViewAnh"
+            android:layout_above="@+id/giohang_mua"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TabHost
+                    android:id="@android:id/tabhost"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TabWidget
+                            android:id="@android:id/tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@color/colorDialog"
+                            android:divider="@color/colorDialog"
+                            android:showDividers="none"></TabWidget>
+
+                        <FrameLayout
+                            android:id="@android:id/tabcontent"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <LinearLayout
+                                android:id="@+id/tab_chi_tiet_san_pham_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                >
+
+                                <include layout="@layout/layout_tab1_chi_tiet_san_pham" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/tab_chi_tiet_san_pham_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <include layout="@layout/layout_tab2_chi_tiet_san_pham" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                </TabHost>
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <RelativeLayout
+            android:id="@+id/giohang_mua"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true">
+
+            <Button
+                android:textSize="25dp"
+                android:id="@+id/btMuaNgay"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="#D84315"
+                android:text="Mua ngay"
+                android:textColor="#fff" />
+
+            <Button
+                android:textSize="25dp"
+                android:id="@+id/btThemVaoGio_ChiTiet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/btMuaNgay"
+                android:layout_toStartOf="@+id/btMuaNgay"
+                android:background="#4CAF50"
+                android:text="Thêm vào giỏ hàng"
+                android:textColor="#fff" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

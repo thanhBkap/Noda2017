@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#808080</color>
+    <color name="colorAccent">#6c6c6c</color>
+    <color name="colorDialog">#00bf63</color>
+    <color name="colorDialog1">#fff</color>
+    <color name="bottomline">#6b6b6b</color>
+    <color name="colorControlNormal">#6b6b6b</color>
+    <color name="colorControlActivated">#6b6b6b</color>
+    <color name="colorControlHighlight">#6b6b6b</color>
+    <color name="colorGrey">#bebdbd</color>
+</resources>
