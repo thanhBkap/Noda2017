@@ -12,6 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.kosalgeek.genasync12.AsyncResponse;
+import com.kosalgeek.genasync12.EachExceptionsHandler;
+import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.wimex.mbns.Adapter.SapXepNSXAdapter;
 import com.wimex.mbns.Model.Auth;
 import com.wimex.mbns.Model.NhaSanXuat;
@@ -22,6 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.util.ArrayList;
 
 
@@ -67,7 +74,7 @@ public class SoLuongNSXFrament extends Fragment {
 
     @Override
     public void onPause() {
-        if (listTask.size()>0){
+        if (listTask.size() > 0) {
             for (AsyncTask task : listTask) {
                 task.cancel(true);
             }
@@ -122,7 +129,6 @@ public class SoLuongNSXFrament extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sap_xep_nsxtheo_so_luong, container, false);
         lvSapXepTheoTenNSX = (ListView) view.findViewById(R.id.lvSapXepTheoSoLuongNSX);
         listNSX = new ArrayList<>();
-<<<<<<< HEAD
         sapXepNSXAdapter = new SapXepNSXAdapter(getContext(), R.layout.list_item_sap_xep_nha_san_xuat2, listNSX);
         lvSapXepTheoTenNSX.setAdapter(sapXepNSXAdapter);
         if (Auth.checked.equals("1")) {
@@ -179,18 +185,17 @@ public class SoLuongNSXFrament extends Fragment {
             });
             postResponseAsyncTask.execute(Auth.domain + "/danhsachnhasanxuatjson.php");
 
-=======
-        if (Auth.checked.equals("1")){
-            listNSX=Auth.sapXepNSXTheoTenList;
-            SapXepNSX.sosanh(listNSX,3);
->>>>>>> origin/24042017
-        }
-        lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                xuLyClickNSX(position);
+            if (Auth.checked.equals("1")) {
+                listNSX = Auth.sapXepNSXTheoTenList;
+                SapXepNSX.sosanh(listNSX, 3);
             }
-        });
+            lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    xuLyClickNSX(position);
+                }
+            });
+        }
         return view;
     }
 
@@ -199,7 +204,7 @@ public class SoLuongNSXFrament extends Fragment {
         NhaSanXuat nhaSanXuat = listNSX.get(pos);
         mMoveToNSX.putExtra("NSXId", nhaSanXuat.getId());
         startActivity(mMoveToNSX);
-      //  getActivity().finish();
+        //  getActivity().finish();
 
     }
 
@@ -212,19 +217,15 @@ public class SoLuongNSXFrament extends Fragment {
             }
         });
         thread.start();*/
-<<<<<<< HEAD
         /*if (Auth.checked.equals("0")) {
             PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), true, new AsyncResponse() {
-=======
         if (Auth.checked.equals("0")){
             getActivity().runOnUiThread(new Runnable() {
->>>>>>> origin/24042017
                 @Override
                 public void run() {
                     listTask.add(new Task().execute(Auth.domain+"/sapxepnsxjson1.php"));
                 }
             });
-<<<<<<< HEAD
             postResponseAsyncTask.setLoadingMessage(getResources().getString(R.string.loading));
             postResponseAsyncTask.setEachExceptionsHandler(new EachExceptionsHandler() {
                 @Override
@@ -250,11 +251,8 @@ public class SoLuongNSXFrament extends Fragment {
             postResponseAsyncTask.execute(Auth.domain + "/danhsachnhasanxuatjson.php");
 
         }*/
-=======
-        }
-
->>>>>>> origin/24042017
     }
+}
 
   /*  class Task extends AsyncTask<String, Void, String> {
         private boolean running = true;
@@ -398,17 +396,14 @@ public class SoLuongNSXFrament extends Fragment {
                     if (isCancelled()) {
 
                     } else {
-<<<<<<< HEAD
                         // synchronized (sanPham) {
                         if (sanPham.getString("KhachHangId").equals(id)) {
                             listsanphamid.add(sanPham.getString("sanPhamId"));
                                  *//*else {
-=======
                        // synchronized (sanPham) {
                             if (sanPham.getString("KhachHangId").equals(id)) {
                                     listsanphamid.add(sanPham.getString("sanPhamId"));
                                  /*else {
->>>>>>> origin/24042017
                                     for (String sanphamid : listsanphamid) {
                                         if (sanphamid.equals(sanPham.getString("sanPhamId"))) {
                                             trung++;
@@ -418,16 +413,13 @@ public class SoLuongNSXFrament extends Fragment {
                                 }
                                 if (trung == 0) {
                                     soLuong++;
-<<<<<<< HEAD
                                 }*//*
                             //  Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
-=======
                                 }*/
-                                //  Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
-                            }
->>>>>>> origin/24042017
+//  Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
+                     /*       }
                         }
-                   // }
+
                 }
                 for (int v1=0;v1<listsanphamid.size();v1++){
                     String s2=listsanphamid.get(v1);
@@ -594,6 +586,6 @@ public class SoLuongNSXFrament extends Fragment {
                 current_task_num=0;
             }
         }
-    }
-*/
-}
+    }*/
+
+
