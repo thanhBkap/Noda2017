@@ -34,7 +34,7 @@ import java.net.ProtocolException;
 import java.util.ArrayList;
 
 
-public class SapXepNSXTheoTenFragment extends Fragment {
+public class SapXepNSXTheoTenFragment extends Fragment{
     ListView lvSapXepTheoTenNSX;
     SapXepNSXAdapter sapXepNSXAdapter;
     ArrayList<NhaSanXuat> listNSX;
@@ -42,7 +42,6 @@ public class SapXepNSXTheoTenFragment extends Fragment {
     int khachHangId, task_num, tab;
     int current_task_num = 0;
     private ProgressDialog progressDialog;
-
     public SapXepNSXTheoTenFragment() {
 
     }
@@ -77,7 +76,7 @@ public class SapXepNSXTheoTenFragment extends Fragment {
 
     @Override
     public void onPause() {
-        if (listTask.size() > 0) {
+        if (listTask.size()>0){
             for (AsyncTask task : listTask) {
                 task.cancel(true);
             }
@@ -132,6 +131,7 @@ public class SapXepNSXTheoTenFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sap_xep_nha_san_xuat_theo_ten, container, false);
         lvSapXepTheoTenNSX = (ListView) view.findViewById(R.id.lvSapXepTheoTenNSX);
         listNSX = new ArrayList<>();
+<<<<<<< HEAD
         sapXepNSXAdapter = new SapXepNSXAdapter(getContext(), R.layout.list_item_sap_xep_nha_san_xuat2, listNSX);
         lvSapXepTheoTenNSX.setAdapter(sapXepNSXAdapter);
         if (Auth.checked.equals("1")) {
@@ -193,6 +193,11 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                     listTask.add(new Task().execute(Auth.domain+"/sapxepnsxjson1.php"));
                 }
             });*/
+=======
+        if (Auth.checked.equals("1")){
+            listNSX=Auth.sapXepNSXTheoTenList;
+            SapXepNSX.sosanh(listNSX,1);
+>>>>>>> origin/24042017
         }
 
         lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -214,6 +219,7 @@ public class SapXepNSXTheoTenFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+<<<<<<< HEAD
        /* if (Auth.checked.equals("0")) {
             PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), true, new AsyncResponse() {
                 @Override
@@ -264,14 +270,30 @@ public class SapXepNSXTheoTenFragment extends Fragment {
             });
             postResponseAsyncTask.execute(Auth.domain+"/danhsachnhasanxuatjson.php");
            *//* getActivity().runOnUiThread(new Runnable() {
+=======
+        /*Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+            }
+        });
+        thread.start();*/
+        if (Auth.checked.equals("0")){
+            getActivity().runOnUiThread(new Runnable() {
+>>>>>>> origin/24042017
                 @Override
                 public void run() {
                     listTask.add(new Task().execute(Auth.domain+"/sapxepnsxjson1.php"));
                 }
+<<<<<<< HEAD
             });*//*
         }*/
+=======
+            });
+        }
+>>>>>>> origin/24042017
 
     }
+
 
 
     class Task extends AsyncTask<String, Void, String> {
@@ -313,7 +335,7 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                         JSONObject nsx = root.getJSONObject(i);
                         if (nsx.getString("LoaiKhachHangId").equals("1")) {
                             final NhaSanXuat nhaSanXuat = new NhaSanXuat();
-                            nhaSanXuat.setAnh(Auth.domain + "/images/avarta/" + nsx.getString("AvartaId"));
+                            nhaSanXuat.setAnh(Auth.domain+"/images/avarta/" + nsx.getString("AvartaId") );
                             nhaSanXuat.setName(nsx.getString("tenKhachHang"));
                             nhaSanXuat.setId(nsx.getString("KhachHangId"));
                             listNSX.add(nhaSanXuat);
@@ -335,9 +357,9 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    listTask.add(new Task2().execute(Auth.domain + "/sanphamjson.php", "" + finalPosition, nhaSanXuat.getId()));
-                                    listTask.add(new Task3().execute(Auth.domain + "/votejson.php", "" + finalPosition, nhaSanXuat.getId()));
-                                    listTask.add(new Task4().execute(Auth.domain + "/danhmucsanpham.php", "" + finalPosition, nhaSanXuat.getId()));
+                                    listTask.add(new Task2().execute(Auth.domain+"/sanphamjson.php", "" + finalPosition, nhaSanXuat.getId()));
+                                    listTask.add(new Task3().execute(Auth.domain+"/votejson.php", "" + finalPosition, nhaSanXuat.getId()));
+                                    listTask.add(new Task4().execute(Auth.domain+"/danhmucsanpham.php", "" + finalPosition, nhaSanXuat.getId()));
                                 }
                             });
                             position++;
@@ -353,14 +375,14 @@ public class SapXepNSXTheoTenFragment extends Fragment {
             // Toast.makeText(getActivity(),""+current_task_num+"--"+task_num,Toast.LENGTH_SHORT).show();
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 1);
+                SapXepNSX.sosanh(listNSX,1);
                 sapXepNSXAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
-                current_task_num = 0;
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
+                current_task_num=0;
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
                 //thongbao();
-                //   updateList();
+             //   updateList();
             }
             /*sosanh(listNSX);
             sapXepNSXAdapter.notifyDataSetChanged();
@@ -418,18 +440,18 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                 int soLuong = 0;
                 int trung = 0;
                 ArrayList<String> listsanphamid = new ArrayList<>();
-                // ArrayList<Integer> listsanphamidtrung = new ArrayList<>();
+               // ArrayList<Integer> listsanphamidtrung = new ArrayList<>();
                 for (int i = 0; i < root.length(); i++) {
                     JSONObject sanPham = root.getJSONObject(i);
 
                     if (isCancelled()) {
 
                     } else {
-                        //   synchronized (sanPham) {
-                        //   Toast.makeText(getContext(),sanPham.getString("KhachHangId")+"--"+id,Toast.LENGTH_LONG).show();
+                     //   synchronized (sanPham) {
+                     //   Toast.makeText(getContext(),sanPham.getString("KhachHangId")+"--"+id,Toast.LENGTH_LONG).show();
 
                         if (sanPham.getString("KhachHangId").equals(id)) {
-                            listsanphamid.add(sanPham.getString("sanPhamId"));
+                                listsanphamid.add(sanPham.getString("sanPhamId"));
                                /* if (listsanphamid.size() == 0) {
                                 } else {
                                     for (String sanphamid : listsanphamid) {
@@ -443,23 +465,23 @@ public class SapXepNSXTheoTenFragment extends Fragment {
                                     soLuong++;
                                 }*/
 
-                            //soLuong++;
-                            // Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
-                        }
-                        // }
+                                //soLuong++;
+                                 // Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
+                            }
+                       // }
                     }
                 }
-                for (int v1 = 0; v1 < listsanphamid.size(); v1++) {
-                    String s2 = listsanphamid.get(v1);
-                    for (int v2 = v1 + 1; v2 < listsanphamid.size(); v2++) {
-                        if (s2.equals(listsanphamid.get(v2))) {
-                            trung = trung + 1;
+                for (int v1=0;v1<listsanphamid.size();v1++){
+                    String s2=listsanphamid.get(v1);
+                    for (int v2=v1+1;v2<listsanphamid.size();v2++){
+                        if (s2.equals(listsanphamid.get(v2))){
+                            trung=trung+1;
                             break;
                         }
                     }
                 }
 
-                soLuong = listsanphamid.size() - trung;
+                soLuong=listsanphamid.size()-trung;
                 listNSX.get(position).setSoSanPham(soLuong + "");
                 sapXepNSXAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
@@ -467,13 +489,13 @@ public class SapXepNSXTheoTenFragment extends Fragment {
             }
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 1);
+                SapXepNSX.sosanh(listNSX,1);
                 sapXepNSXAdapter.notifyDataSetChanged();
-                // thongbao();
-                current_task_num = 0;
+               // thongbao();
+                current_task_num=0;
                 progressDialog.dismiss();
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
             }
         }
     }
@@ -535,12 +557,12 @@ public class SapXepNSXTheoTenFragment extends Fragment {
             //    Toast.makeText(getActivity(),""+current_task_num+"--"+task_num,Toast.LENGTH_SHORT).show();
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 1);
+                SapXepNSX.sosanh(listNSX,1);
                 sapXepNSXAdapter.notifyDataSetChanged();
-                // thongbao();
-                current_task_num = 0;
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
+               // thongbao();
+                current_task_num=0;
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
                 progressDialog.dismiss();
             }
         }
@@ -606,13 +628,13 @@ public class SapXepNSXTheoTenFragment extends Fragment {
             }
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 1);
+                SapXepNSX.sosanh(listNSX,1);
                 sapXepNSXAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
-                // thongbao();
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
-                current_task_num = 0;
+               // thongbao();
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
+                current_task_num=0;
             }
         }
     }

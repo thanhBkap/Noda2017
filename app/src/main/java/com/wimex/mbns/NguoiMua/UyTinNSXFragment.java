@@ -12,9 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.kosalgeek.genasync12.AsyncResponse;
-import com.kosalgeek.genasync12.EachExceptionsHandler;
-import com.kosalgeek.genasync12.PostResponseAsyncTask;
 import com.wimex.mbns.Adapter.SapXepNSXAdapter;
 import com.wimex.mbns.Model.Auth;
 import com.wimex.mbns.Model.NhaSanXuat;
@@ -27,11 +24,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,7 +78,7 @@ public class UyTinNSXFragment extends Fragment {
 
     @Override
     public void onPause() {
-        if (listTask.size() > 0) {
+        if (listTask.size()>0){
             for (AsyncTask task : listTask) {
                 task.cancel(true);
             }
@@ -138,6 +133,7 @@ public class UyTinNSXFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sap_xep_nsxtheo_uy_tin, container, false);
         lvSapXepTheoTenNSX = (ListView) view.findViewById(R.id.lvSapXepTheoUyTinNSX);
         listNSX = new ArrayList<>();
+<<<<<<< HEAD
         sapXepNSXAdapter = new SapXepNSXAdapter(getContext(), R.layout.list_item_sap_xep_nha_san_xuat2, listNSX);
         lvSapXepTheoTenNSX.setAdapter(sapXepNSXAdapter);
         if (Auth.checked.equals("1")) {
@@ -194,6 +190,11 @@ public class UyTinNSXFragment extends Fragment {
             });
             postResponseAsyncTask.execute(Auth.domain + "/danhsachnhasanxuatjson.php");
 
+=======
+        if (Auth.checked.equals("1")){
+            listNSX=Auth.sapXepNSXTheoTenList;
+            SapXepNSX.sosanh(listNSX,2);
+>>>>>>> origin/24042017
         }
         lvSapXepTheoTenNSX.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -221,56 +222,26 @@ public class UyTinNSXFragment extends Fragment {
             }
         });
         thread.start();*/
+<<<<<<< HEAD
         /*if (Auth.checked.equals("0")) {
             PostResponseAsyncTask postResponseAsyncTask = new PostResponseAsyncTask(getContext(), true, new AsyncResponse() {
+=======
+        if (Auth.checked.equals("0")){
+            getActivity().runOnUiThread(new Runnable() {
+>>>>>>> origin/24042017
                 @Override
-                public void processFinish(String s) {
-                    JSONArray root = null;
-                    try {
-                        root = new JSONArray(s);
-                        for (int i = 0; i < root.length(); i++) {
-                            JSONObject nsx = root.getJSONObject(i);
-                            NhaSanXuat nhaSanXuat = new NhaSanXuat();
-                            nhaSanXuat.setAnh(Auth.domain + "/images/avarta/" + nsx.getString("image"));
-                            nhaSanXuat.setName(nsx.getString("name"));
-                            nhaSanXuat.setId(nsx.getString("id"));
-                            nhaSanXuat.setSoSanPham(nsx.getString("product_nums"));
-                            nhaSanXuat.setVote(nsx.getString("point"));
-                            listNSX.add(nhaSanXuat);
-                            SapXepNSX.sosanh(listNSX, 2);
-                            sapXepNSXAdapter.notifyDataSetChanged();
-                        }
-                        Auth.sapXepNSXTheoTenList = listNSX;
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                public void run() {
+                    listTask.add(new Task().execute(Auth.domain+"/sapxepnsxjson1.php"));
                 }
             });
-            postResponseAsyncTask.setLoadingMessage(getResources().getString(R.string.loading));
-            postResponseAsyncTask.setEachExceptionsHandler(new EachExceptionsHandler() {
-                @Override
-                public void handleIOException(IOException e) {
+        }
 
-                }
+    }
 
-                @Override
-                public void handleMalformedURLException(MalformedURLException e) {
+    class Task extends AsyncTask<String, Void, String> {
+        private boolean running = true;
 
-                }
-
-                @Override
-                public void handleProtocolException(ProtocolException e) {
-                    Toast.makeText(getContext(), getResources().getString(R.string.network_error), Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void handleUnsupportedEncodingException(UnsupportedEncodingException e) {
-
-                }
-            });
-            postResponseAsyncTask.execute(Auth.domain + "/danhsachnhasanxuatjson.php");
-
+<<<<<<< HEAD
         }*/
     }
 
@@ -283,32 +254,41 @@ public class UyTinNSXFragment extends Fragment {
                 progressDialog.setTitle("Loading");
                 progressDialog.setCancelable(false);
             }
+=======
+        public Task() {
+            progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setMessage("Please wait a minute ...");
+            progressDialog.setTitle("Loading");
+            progressDialog.setCancelable(false);
+        }
+>>>>>>> origin/24042017
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-                progressDialog.show();
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String result = "";
+            if (running) {
+                return JsonToString.docNoiDung_Tu_URL(params[0]);
+            } else {
+                return result;
             }
+        }
 
-            @Override
-            protected String doInBackground(String... params) {
-                String result = "";
-                if (running) {
-                    return JsonToString.docNoiDung_Tu_URL(params[0]);
-                } else {
-                    return result;
-                }
-            }
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONArray root = new JSONArray(s);
+                int position = 0;
+                task_num = root.length() * 3 + 1;
+                for (int i = 0; i < root.length(); i++) {
+                    if (isCancelled()) {
 
-            @Override
-            protected void onPostExecute(String s) {
-                try {
-                    JSONArray root = new JSONArray(s);
-                    int position = 0;
-                    task_num = root.length() * 3 + 1;
-                    for (int i = 0; i < root.length(); i++) {
-                        if (isCancelled()) {
-
+<<<<<<< HEAD
                         } else {
                             JSONObject nsx = root.getJSONObject(i);
                             if (nsx.getString("LoaiKhachHangId").equals("1")) {
@@ -319,6 +299,18 @@ public class UyTinNSXFragment extends Fragment {
                                 listNSX.add(nhaSanXuat);
                                 //sosanh(listNSX);
                             *//*Collections.sort(listNSX, new Comparator<NhaSanXuat>() {
+=======
+                    } else {
+                        JSONObject nsx = root.getJSONObject(i);
+                        if (nsx.getString("LoaiKhachHangId").equals("1")) {
+                            final NhaSanXuat nhaSanXuat = new NhaSanXuat();
+                            nhaSanXuat.setAnh(Auth.domain+"/images/avarta/" + nsx.getString("AvartaId") );
+                            nhaSanXuat.setName(nsx.getString("tenKhachHang"));
+                            nhaSanXuat.setId(nsx.getString("KhachHangId"));
+                            listNSX.add(nhaSanXuat);
+                            //sosanh(listNSX);
+                            /*Collections.sort(listNSX, new Comparator<NhaSanXuat>() {
+>>>>>>> origin/24042017
                                 @Override
                                 public int compare(NhaSanXuat o1, NhaSanXuat o2) {
                                     if (o1.getName().compareToIgnoreCase(o2.getName()) > 0) {
@@ -329,6 +321,7 @@ public class UyTinNSXFragment extends Fragment {
                                         return -1;
                                     }
                                 }
+<<<<<<< HEAD
                             });*//*
                                 sapXepNSXAdapter.notifyDataSetChanged();
                                 final int finalPosition = position;
@@ -344,29 +337,54 @@ public class UyTinNSXFragment extends Fragment {
                             } else {
                                 current_task_num += 3;
                             }
+=======
+                            });*/
+                            sapXepNSXAdapter.notifyDataSetChanged();
+                            final int finalPosition = position;
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    listTask.add(new Task2().execute(Auth.domain+"/sanphamjson.php", "" + finalPosition, nhaSanXuat.getId()));
+                                    listTask.add(new Task3().execute(Auth.domain+"/votejson.php", "" + finalPosition, nhaSanXuat.getId()));
+                                    listTask.add(new Task4().execute(Auth.domain+"/danhmucsanpham.php", "" + finalPosition, nhaSanXuat.getId()));
+                                }
+                            });
+                            position++;
+                        } else {
+                            current_task_num += 3;
+>>>>>>> origin/24042017
                         }
-
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
                 }
-                // Toast.makeText(getActivity(),""+current_task_num+"--"+task_num,Toast.LENGTH_SHORT).show();
-                current_task_num++;
-                if (current_task_num >= task_num) {
-                    SapXepNSX.sosanh(listNSX, 2);
-                    sapXepNSXAdapter.notifyDataSetChanged();
-                    progressDialog.dismiss();
-                    current_task_num = 0;
-                    Auth.sapXepNSXTheoTenList = listNSX;
-                    Auth.checked = "1";
-                    //thongbao();
-                }
+<<<<<<< HEAD
             *//*sosanh(listNSX);
             sapXepNSXAdapter.notifyDataSetChanged();
             progressDialog.dismiss();
             current_task_num=0;*//*
             }
+=======
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // Toast.makeText(getActivity(),""+current_task_num+"--"+task_num,Toast.LENGTH_SHORT).show();
+            current_task_num++;
+            if (current_task_num >= task_num) {
+                SapXepNSX.sosanh(listNSX,2);
+                sapXepNSXAdapter.notifyDataSetChanged();
+                progressDialog.dismiss();
+                current_task_num=0;
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
+                //thongbao();
+            }
+            /*sosanh(listNSX);
+            sapXepNSXAdapter.notifyDataSetChanged();
+            progressDialog.dismiss();
+            current_task_num=0;*/
+>>>>>>> origin/24042017
         }
+    }
 
     public void thongbao() {
         for (NhaSanXuat nhaSanXuat : listNSX) {
@@ -416,10 +434,17 @@ public class UyTinNSXFragment extends Fragment {
                     if (isCancelled()) {
 
                     } else {
+<<<<<<< HEAD
                         //  synchronized (sanPham) {
                         if (sanPham.getString("KhachHangId").equals(id)) {
                             listsanphamid.add(sanPham.getString("sanPhamId"));
                                  *//*else {
+=======
+                      //  synchronized (sanPham) {
+                            if (sanPham.getString("KhachHangId").equals(id)) {
+                                    listsanphamid.add(sanPham.getString("sanPhamId"));
+                                 /*else {
+>>>>>>> origin/24042017
                                     for (String sanphamid : listsanphamid) {
                                         if (sanphamid.equals(sanPham.getString("sanPhamId"))) {
                                             trung++;
@@ -429,23 +454,28 @@ public class UyTinNSXFragment extends Fragment {
                                 }
                                 if (trung == 0) {
                                     soLuong++;
+<<<<<<< HEAD
                                 }*//*
                             //  Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
+=======
+                                }*/
+                                //  Toast.makeText(getActivity(),""+current_task_num+sanPham.getString("sanPhamId")+"--"+sanPham.getString("tenSanPham"),Toast.LENGTH_SHORT).show();
+                            }
+>>>>>>> origin/24042017
                         }
-                    }
-                    // }
+                   // }
                 }
 
-                for (int v1 = 0; v1 < listsanphamid.size(); v1++) {
-                    String s2 = listsanphamid.get(v1);
-                    for (int v2 = v1 + 1; v2 < listsanphamid.size(); v2++) {
-                        if (s2.equals(listsanphamid.get(v2))) {
-                            trung = trung + 1;
+                for (int v1=0;v1<listsanphamid.size();v1++){
+                    String s2=listsanphamid.get(v1);
+                    for (int v2=v1+1;v2<listsanphamid.size();v2++){
+                        if (s2.equals(listsanphamid.get(v2))){
+                            trung=trung+1;
                             break;
                         }
                     }
                 }
-                soLuong = listsanphamid.size() - trung;
+                soLuong=listsanphamid.size()-trung;
                 listNSX.get(position).setSoSanPham(soLuong + "");
                 sapXepNSXAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
@@ -453,13 +483,13 @@ public class UyTinNSXFragment extends Fragment {
             }
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 2);
+                SapXepNSX.sosanh(listNSX,2);
                 sapXepNSXAdapter.notifyDataSetChanged();
                 // thongbao();
-                current_task_num = 0;
+                current_task_num=0;
                 progressDialog.dismiss();
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
             }
         }
     }
@@ -521,12 +551,12 @@ public class UyTinNSXFragment extends Fragment {
             //    Toast.makeText(getActivity(),""+current_task_num+"--"+task_num,Toast.LENGTH_SHORT).show();
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 2);
+                SapXepNSX.sosanh(listNSX,2);
                 sapXepNSXAdapter.notifyDataSetChanged();
                 // thongbao();
-                current_task_num = 0;
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
+                current_task_num=0;
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
                 progressDialog.dismiss();
             }
         }
@@ -592,13 +622,13 @@ public class UyTinNSXFragment extends Fragment {
             }
             current_task_num++;
             if (current_task_num >= task_num) {
-                SapXepNSX.sosanh(listNSX, 2);
+                SapXepNSX.sosanh(listNSX,2);
                 sapXepNSXAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
                 // thongbao();
-                Auth.sapXepNSXTheoTenList = listNSX;
-                Auth.checked = "1";
-                current_task_num = 0;
+                Auth.sapXepNSXTheoTenList=listNSX;
+                Auth.checked="1";
+                current_task_num=0;
             }
         }
     }
